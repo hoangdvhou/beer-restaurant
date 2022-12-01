@@ -5,6 +5,9 @@ import Team2Png from "@/assets/team2.png";
 import { Button, Select, Checkbox, Form, Input } from "antd";
 import { useState } from "react";
 
+const FC1 = "France";
+const FC2 = "England";
+
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
   const [guessSuccess, setGuessSuccess] = useState(false);
@@ -32,32 +35,33 @@ export default function BeerRestaurantHome() {
   };
   return (
     <div className="mb-10">
-      <img src={HeroPng} width={"100%"} height={"auto"} alt="world cup 2022" />
+      <img
+        src={HeroPng}
+        className="mb-4"
+        width={"100%"}
+        height={"auto"}
+        alt="world cup 2022"
+      />
       <div className=" px-4">
         <div style={{ backgroundColor: "lightblue", padding: "16px 32px" }}>
-          <p className="text-5xl text-center font-bold">
-            Dự đoán tỉ số trận tứ kết 1
-          </p>
+          <p className="text-2xl text-center">{`DỰ ĐOÁN TỈ SỐ`}</p>
+          <p className="text-2xl text-center">{`HIỆP 1 TRẬN ĐẤU`}</p>
+          <p className="text-3xl text-center font-bold">{`${FC1} vs ${FC2}`}</p>
         </div>
         {guessSuccess ? (
-          <div>
+          <div className="mt-4">
             <h3 className="text-3xl">Chúc mừng quý khách</h3>
             <p>
-              Họ và tên: <span className="text-2xl">{user?.name}</span>
+              Họ và tên: <span className="text-xl">{user?.name}</span>
             </p>
             <p>
-              Số điện thoại: <span className="text-2xl">{user?.phone}</span>
+              Số điện thoại: <span className="text-xl">{user?.phone}</span>
             </p>
-            <p>Đã dự đoán tỉ số trận đấu tranh trận tứ kết 1</p>
+            <p>Đã dự đoán tỉ số hiệp 1 trận đấu {`${FC1} vs ${FC2}`}</p>
             <div className="flex justify-between items-center text-center lg:w-1/3 m-auto">
               <div className="flex-none">
-                <img
-                  src={Team1Png}
-                  alt="argentina"
-                  width={100}
-                  height={"auto"}
-                />
-                <p>Argentina</p>
+                <img src={Team1Png} alt={FC1} width={100} height={"auto"} />
+                <p className="font-bold">{FC1}</p>
               </div>
               <div className="flex items-center justify-center gap-2 flex-1">
                 {oneScore}
@@ -65,16 +69,11 @@ export default function BeerRestaurantHome() {
                 {twoScore}
               </div>
               <div className="flex-none">
-                <img
-                  src={Team2Png}
-                  alt="argentina"
-                  width={100}
-                  height={"auto"}
-                />
-                <p>France</p>
+                <img src={Team2Png} alt={FC2} width={100} height={"auto"} />
+                <p className="font-bold">{FC2}</p>
               </div>
             </div>
-            <p className="font-bold">
+            <p className="font-bold mt-4 text-center">
               Quý khách vui lòng chụp lại màn hình kết quả dự đoán để nhận phần
               thưởng nếu dự đoán đúng
             </p>
@@ -117,13 +116,8 @@ export default function BeerRestaurantHome() {
           <>
             <div className="flex justify-between items-center text-center lg:w-1/3 m-auto">
               <div className="flex-none">
-                <img
-                  src={Team1Png}
-                  alt="argentina"
-                  width={100}
-                  height={"auto"}
-                />
-                <p>Argentina</p>
+                <img src={Team1Png} alt={FC1} width={100} height={"auto"} />
+                <p>{FC1}</p>
               </div>
               <div className="flex items-center justify-center gap-2 flex-1">
                 <Select
@@ -178,7 +172,7 @@ export default function BeerRestaurantHome() {
                       label: 10,
                     },
                   ]}
-                ></Select>
+                />
 
                 <div>VS</div>
 
@@ -234,16 +228,11 @@ export default function BeerRestaurantHome() {
                       label: 10,
                     },
                   ]}
-                ></Select>
+                />
               </div>
               <div className="flex-none">
-                <img
-                  src={Team2Png}
-                  alt="argentina"
-                  width={100}
-                  height={"auto"}
-                />
-                <p>France</p>
+                <img src={Team2Png} alt={FC2} width={100} height={"auto"} />
+                <p>{FC2}</p>
               </div>
             </div>
             <Form

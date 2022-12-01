@@ -26,7 +26,7 @@ const BasicLayout = () => (
           <img src={LogoImage} alt="logo" width={40} height={40} />
         </div>
         <div>
-          <p className="text-white text-lg">Tận hưởng cuộc sống </p>
+          <p className="text-white text-lg">Sức Bật Việt Nam</p>
         </div>
       </div>
     </div>
