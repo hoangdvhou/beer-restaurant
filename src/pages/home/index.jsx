@@ -4,6 +4,7 @@ import Team1Png from "@/assets/team1.png";
 import Team2Png from "@/assets/team2.png";
 import { Button, Select, Checkbox, Form, Input } from "antd";
 import { useState } from "react";
+import { submit, sendOtp, confirm } from "@/services/prediction";
 
 const FC1 = "France";
 const FC2 = "England";
@@ -15,19 +16,59 @@ export default function BeerRestaurantHome() {
   const [user, setUser] = useState(null);
   const [oneScore, setOneScore] = useState(0);
   const [twoScore, setTwoScore] = useState(0);
+  const [requestId, setRequestId] = useState("");
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    setEnterOtp(true);
-    setUser(values);
+  const onFinish = async (values) => {
+    console.log("values:", values);
+
+    if (!values?.name || !values?.name?.trim()) {
+      alert("Vui lòng nhập tên đúng định dạng");
+      return;
+    }
+
+    const res = await submit({
+      name: values?.name?.trim(),
+      phone: values?.phone?.trim(),
+      scoreA: oneScore,
+      scoreB: twoScore,
+    });
+
+    if (res?.success) {
+      const step2 = await sendOtp({
+        phone: values?.phone?.trim(),
+        requestId: res?.data?.data?.requestId,
+      });
+      if (step2?.success) {
+        setRequestId(step2?.data?.data?.requestId);
+        setEnterOtp(true);
+        setUser(values);
+      } else {
+        alert("Lỗi, vui lòng thử lại");
+      }
+    } else {
+      alert("Lỗi, vui lòng thử lại");
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
-  const onOTPFinish = (values) => {
-    setGuessSuccess(true);
+  const onOTPFinish = async (values) => {
+    if (!values?.otp || !values?.otp?.trim()) {
+      alert("Vui lòng nhập OTP đúng định dạng");
+      return;
+    }
+    const res = await confirm({
+      otp: values?.otp,
+      phone: user?.phone,
+      requestId: requestId,
+    });
+    if (res?.success) {
+      setGuessSuccess(true);
+    } else {
+      alert("Lỗi, vui lòng thử lại");
+    }
   };
 
   const onOTPFinishFailed = (errorInfo) => {
@@ -91,7 +132,7 @@ export default function BeerRestaurantHome() {
               <div className="w-full lg:w-1/4 mx-auto my-4 lg:my-10">
                 <Form.Item
                   label="OTP"
-                  name="Nhập OTP"
+                  name="otp"
                   rules={[{ required: true, message: "Yêu cầu nhập OTP!" }]}
                 >
                   <Input />

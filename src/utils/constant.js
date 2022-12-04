@@ -1,0 +1,11 @@
+export const AUTHORIZATION = "Authorization";
+export const BEARER = "Bearer ";
+export const ACCESS_TOKEN = "access_token";
+export const REFRESH_TOKEN = "refresh_token";
+export const REFRESH_TOKEN_ENDPOINT = "/token/refresh";
+export const COLLAPSED_STATUS = "isCollapsed";
+export const SUCCESS_STATUS = 200;
+export const UNAUTHORIZED_STATUS = 401;
+export const ACCESS_DENIED_STATUS = 403;
+export const BAD_REQUEST = 400;
+export const SEVER_ERROR = 500;

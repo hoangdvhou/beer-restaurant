@@ -2,6 +2,7 @@ import { useLocation } from "react-router";
 import React, { useState } from "react";
 import { Input, Table } from "antd";
 import moment from "moment";
+import { find } from "@/services/prediction";
 
 const columns = [
   {
