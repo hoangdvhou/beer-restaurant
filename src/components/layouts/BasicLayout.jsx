@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import React from "react";
 import { Breadcrumb, Layout, Menu } from "antd";
 import LogoImage from "@/assets/logo.png";
+import LogoImage2 from "@/assets/logo2.png";
 const { Header, Content, Footer } = Layout;
 import { Link } from "react-router-dom";
 
@@ -13,7 +14,7 @@ const BasicLayout = () => (
         top: 0,
         zIndex: 1,
         width: "100%",
-        background: "#e3211c",
+        background: "#0e6137",
         height: "64px",
         paddingInline: "16px",
         color: "rgba(0, 0, 0, 0.88)",
@@ -23,7 +24,8 @@ const BasicLayout = () => (
     >
       <div className="logo h-full flex items-center justify-between">
         <div className="my-auto">
-          <img src={LogoImage} alt="logo" width={80} height={80} />
+          <img src={LogoImage} alt="logo" width={100} height={100} />
+          {/* <img src={LogoImage2} alt="logo" width={100} height={100} /> */}
         </div>
         <div>
           <p className="text-white text-lg">Sức Bật Việt Nam</p>

@@ -6,8 +6,8 @@ import { Button, Select, Checkbox, Form, Input } from "antd";
 import { useState } from "react";
 import { submit, sendOtp, confirm } from "@/services/prediction";
 
-const FC1 = "France";
-const FC2 = "England";
+export const FC1 = "France";
+export const FC2 = "England";
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
@@ -19,8 +19,6 @@ export default function BeerRestaurantHome() {
   const [requestId, setRequestId] = useState("");
 
   const onFinish = async (values) => {
-    console.log("values:", values);
-
     if (!values?.name || !values?.name?.trim()) {
       alert("Vui lòng nhập tên đúng định dạng");
       return;
@@ -86,7 +84,8 @@ export default function BeerRestaurantHome() {
       <div className=" px-4">
         <div
           style={{
-            backgroundColor: "lightblue",
+            // backgroundColor: "#0e6137",
+            backgroundColor: "#c2a23f",
             padding: "16px 32px",
           }}
         >
@@ -173,7 +172,7 @@ export default function BeerRestaurantHome() {
             <div className="flex justify-between items-center text-center lg:w-1/3 m-auto">
               <div className="flex-none">
                 <img src={Team1Png} alt={FC1} width={100} height={"auto"} />
-                <p>{FC1}</p>
+                <p className="font-bold">{FC1}</p>
               </div>
               <div className="flex items-center justify-center gap-2 flex-1">
                 <Select
@@ -288,7 +287,7 @@ export default function BeerRestaurantHome() {
               </div>
               <div className="flex-none">
                 <img src={Team2Png} alt={FC2} width={100} height={"auto"} />
-                <p>{FC2}</p>
+                <p className="font-bold">{FC2}</p>
               </div>
             </div>
             <Form

@@ -6,7 +6,7 @@ import {
   SEVER_ERROR,
 } from "@/utils/constant";
 
-const BASE_URL = "http://210.245.8.12:8083";
+const BASE_URL = "https://apigw.hoanhipcungworldcup.com";
 const request = axios.create({
   baseURL: BASE_URL,
   timeout: 60000,
