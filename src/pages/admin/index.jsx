@@ -1,8 +1,9 @@
 import { useLocation } from "react-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Select, Space, Table } from "antd";
 import moment from "moment";
 import { find } from "@/services/prediction";
+import { FC1, FC2 } from "../home";
 
 const columns = [
   {
@@ -35,6 +36,8 @@ const columns = [
 
 const AdminPage = () => {
   const { search } = useLocation();
+  const [oneScore, setOneScore] = useState(0);
+  const [twoScore, setTwoScore] = useState(0);
   const [result, setResult] = useState([]);
   const getData = useCallback(async () => {
     const res = await find({});
@@ -58,7 +61,123 @@ const AdminPage = () => {
   return (
     <>
       <div className="mt-4 px-4">
-        <Button className="mb-4">Lọc 15</Button>
+        <div style={{ display: "flex" }} className="mb-4">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ marginRight: 8 }}>{FC1}</div>
+              <Select
+                style={{ marginRight: 8 }}
+                defaultValue={0}
+                onChange={(e) => {
+                  setOneScore(e);
+                }}
+                options={[
+                  {
+                    value: 0,
+                    label: 0,
+                  },
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                  {
+                    value: 2,
+                    label: 2,
+                  },
+                  {
+                    value: 3,
+                    label: 3,
+                  },
+                  {
+                    value: 4,
+                    label: 4,
+                  },
+                  {
+                    value: 5,
+                    label: 5,
+                  },
+                  {
+                    value: 6,
+                    label: 6,
+                  },
+                  {
+                    value: 7,
+                    label: 7,
+                  },
+                  {
+                    value: 8,
+                    label: 8,
+                  },
+                  {
+                    value: 9,
+                    label: 9,
+                  },
+                  {
+                    value: 10,
+                    label: 10,
+                  },
+                ]}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ marginRight: 8 }}>{FC2}</div>
+              <Select
+                style={{ marginRight: 8 }}
+                defaultValue={0}
+                onChange={(e) => {
+                  setTwoScore(e);
+                }}
+                options={[
+                  {
+                    value: 0,
+                    label: 0,
+                  },
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                  {
+                    value: 2,
+                    label: 2,
+                  },
+                  {
+                    value: 3,
+                    label: 3,
+                  },
+                  {
+                    value: 4,
+                    label: 4,
+                  },
+                  {
+                    value: 5,
+                    label: 5,
+                  },
+                  {
+                    value: 6,
+                    label: 6,
+                  },
+                  {
+                    value: 7,
+                    label: 7,
+                  },
+                  {
+                    value: 8,
+                    label: 8,
+                  },
+                  {
+                    value: 9,
+                    label: 9,
+                  },
+                  {
+                    value: 10,
+                    label: 10,
+                  },
+                ]}
+              />
+            </div>
+          </div>
+          <Button>Lọc</Button>
+        </div>
         <Table
           pagination={{ pageSize: 15 }}
           rowKey={(r) => r?.id}
