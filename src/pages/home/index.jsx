@@ -84,9 +84,24 @@ export default function BeerRestaurantHome() {
         alt="world cup 2022"
       />
       <div className=" px-4">
-        <div style={{ backgroundColor: "lightblue", padding: "16px 32px" }}>
-          <p className="text-2xl text-center">{`DỰ ĐOÁN TỈ SỐ`}</p>
-          <p className="text-2xl text-center">{`HIỆP 1 TRẬN ĐẤU`}</p>
+        <div
+          style={{
+            backgroundColor: "lightblue",
+            padding: "16px 32px",
+          }}
+        >
+          <p
+            style={{
+              color: "white",
+            }}
+            className="text-2xl text-center"
+          >{`DỰ ĐOÁN TỈ SỐ`}</p>
+          <p
+            style={{
+              color: "white",
+            }}
+            className="text-2xl text-center"
+          >{`HIỆP 1 TRẬN ĐẤU`}</p>
           <p className="text-3xl text-center font-bold">{`${FC1} vs ${FC2}`}</p>
         </div>
         {guessSuccess ? (

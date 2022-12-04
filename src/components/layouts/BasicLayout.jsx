@@ -13,7 +13,7 @@ const BasicLayout = () => (
         top: 0,
         zIndex: 1,
         width: "100%",
-        background: "#e6624f",
+        background: "#e3211c",
         height: "64px",
         paddingInline: "16px",
         color: "rgba(0, 0, 0, 0.88)",
@@ -23,7 +23,7 @@ const BasicLayout = () => (
     >
       <div className="logo h-full flex items-center justify-between">
         <div className="my-auto">
-          <img src={LogoImage} alt="logo" width={40} height={40} />
+          <img src={LogoImage} alt="logo" width={80} height={80} />
         </div>
         <div>
           <p className="text-white text-lg">Sức Bật Việt Nam</p>
