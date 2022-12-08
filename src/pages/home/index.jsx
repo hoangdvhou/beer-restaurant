@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import HeroPng from "@/assets/hero.png";
-import Team1Png from "@/assets/team1.png";
-import Team2Png from "@/assets/team2.png";
+import Team1Png from "@/assets/croatia.png";
+import Team2Png from "@/assets/brazil.png";
 import { Button, Select, Checkbox, Form, Input } from "antd";
 import { useState } from "react";
 import { submit, sendOtp, confirm } from "@/services/prediction";
 
-export const FC1 = "France";
-export const FC2 = "England";
+export const FC1 = "Croatia";
+export const FC2 = "Brazil";
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
@@ -27,12 +27,14 @@ export default function BeerRestaurantHome() {
     const res = await submit({
       name: values?.name?.trim(),
       phone: values?.phone?.trim(),
+      email: values?.email?.trim(),
       scoreA: oneScore,
       scoreB: twoScore,
     });
 
     if (res?.success) {
       const step2 = await sendOtp({
+        email: values?.email?.trim(),
         phone: values?.phone?.trim(),
         requestId: res?.data?.data?.requestId,
       });
@@ -60,6 +62,7 @@ export default function BeerRestaurantHome() {
     const res = await confirm({
       otp: values?.otp,
       phone: user?.phone,
+      email: user?.email,
       requestId: requestId,
     });
     if (res?.success) {
@@ -115,7 +118,13 @@ export default function BeerRestaurantHome() {
             <p>Đã dự đoán tỉ số hiệp 1 trận đấu {`${FC1} vs ${FC2}`}</p>
             <div className="flex justify-between items-center text-center lg:w-1/3 m-auto">
               <div className="flex-none">
-                <img src={Team1Png} alt={FC1} width={100} height={"auto"} />
+                <img
+                  src={Team1Png}
+                  className="mt-4"
+                  alt={FC1}
+                  width={100}
+                  height={"auto"}
+                />
                 <p className="font-bold">{FC1}</p>
               </div>
               <div className="flex items-center justify-center gap-2 flex-1">
@@ -124,7 +133,13 @@ export default function BeerRestaurantHome() {
                 {twoScore}
               </div>
               <div className="flex-none">
-                <img src={Team2Png} alt={FC2} width={100} height={"auto"} />
+                <img
+                  src={Team2Png}
+                  className="mt-2"
+                  alt={FC2}
+                  width={100}
+                  height={"auto"}
+                />
                 <p className="font-bold">{FC2}</p>
               </div>
             </div>
@@ -171,7 +186,13 @@ export default function BeerRestaurantHome() {
           <>
             <div className="flex justify-between items-center text-center lg:w-1/3 m-auto">
               <div className="flex-none">
-                <img src={Team1Png} alt={FC1} width={100} height={"auto"} />
+                <img
+                  src={Team1Png}
+                  className="mt-2"
+                  alt={FC1}
+                  width={100}
+                  height={"auto"}
+                />
                 <p className="font-bold">{FC1}</p>
               </div>
               <div className="flex items-center justify-center gap-2 flex-1">
@@ -286,7 +307,13 @@ export default function BeerRestaurantHome() {
                 />
               </div>
               <div className="flex-none">
-                <img src={Team2Png} alt={FC2} width={100} height={"auto"} />
+                <img
+                  src={Team2Png}
+                  className="mt-2"
+                  alt={FC2}
+                  width={100}
+                  height={"auto"}
+                />
                 <p className="font-bold">{FC2}</p>
               </div>
             </div>
@@ -302,6 +329,7 @@ export default function BeerRestaurantHome() {
               <div className="w-full lg:w-1/4 mx-auto my-4 lg:my-10">
                 <Form.Item
                   label="Họ và tên"
+                  validateTrigger="onBlur"
                   name="name"
                   rules={[{ required: true, message: "Vui lòng nhập tên!" }]}
                 >
@@ -311,12 +339,28 @@ export default function BeerRestaurantHome() {
                 <Form.Item
                   label="Số điện thoại"
                   name="phone"
+                  validateTrigger="onBlur"
                   rules={[
                     { required: true, message: "Vui lòng nhập số điện thoại!" },
                     {
                       pattern: "^[0][0-9]{9}$",
                       message: "Vui lòng nhập đúng định dạng",
                     },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item
+                  label="Email"
+                  name="email"
+                  rules={[
+                    { required: true, message: "Vui lòng nhập email!" },
+                    // {
+                    //   required: true,
+                    //   pattern: `/^(([^<>()[].,;:s@"]+(.[^<>()[].,;:s@"]+)*)|(".+"))@(([^<>()[].,;:s@"]+.)+[^<>()[].,;:s@"]{2,})$/i`,
+                    //   message: "Vui lòng nhập đúng định dạng",
+                    // },
                   ]}
                 >
                   <Input />

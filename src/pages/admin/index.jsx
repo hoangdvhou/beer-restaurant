@@ -5,40 +5,48 @@ import moment from "moment";
 import { find } from "@/services/prediction";
 import { FC1, FC2 } from "../home";
 
-const columns = [
-  {
-    title: "Họ tên",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "SDT",
-    dataIndex: "phone",
-    key: "phone",
-  },
-  {
-    title: "Tỉ số",
-    key: "guessResult",
-    render: (r) => <p>{`${r?.scoreA} - ${r?.scoreB}`}</p>,
-  },
-  {
-    title: "Thời gian",
-    dataIndex: "createdDate",
-    key: "createdDate",
-    render: (text) => (
-      <div>
-        <p>{moment(text).format("HH:mm:ss")}</p>
-        <p style={{ fontSize: 12 }}>{moment(text).format("DD/MM/YYYY")}</p>
-      </div>
-    ),
-  },
-];
-
 const AdminPage = () => {
   const { search } = useLocation();
   const [oneScore, setOneScore] = useState(0);
   const [twoScore, setTwoScore] = useState(0);
   const [result, setResult] = useState([]);
+
+  const columns = [
+    {
+      title: "Họ tên",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "SDT",
+      dataIndex: "phone",
+      key: "phone",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Tỉ số",
+      key: "guessResult",
+      render: (r) => <p>{`${r?.scoreA} - ${r?.scoreB}`}</p>,
+    },
+    {
+      title: "Thời gian",
+      dataIndex: "creationDate",
+      key: "creationDate",
+      render: (text) => {
+        return (
+          <div>
+            <p>{moment(text).format("HH:mm:ss")}</p>
+            <p style={{ fontSize: 12 }}>{moment(text).format("DD/MM/YYYY")}</p>
+          </div>
+        );
+      },
+    },
+  ];
+
   const getData = useCallback(async () => {
     const res = await find({});
     if (res?.success) {
@@ -57,6 +65,17 @@ const AdminPage = () => {
       isMounted = false;
     };
   }, [getData]);
+
+  const onFilter = async () => {
+    const res = await find({
+      scoreA: oneScore,
+      scoreB: twoScore,
+      limit: 15,
+    });
+    if (res?.success) {
+      setResult(res?.data?.data?.elementList);
+    }
+  };
 
   return (
     <>
@@ -176,7 +195,7 @@ const AdminPage = () => {
               />
             </div>
           </div>
-          <Button>Lọc</Button>
+          <Button onClick={onFilter}>Lọc</Button>
         </div>
         <Table
           pagination={{ pageSize: 15 }}
