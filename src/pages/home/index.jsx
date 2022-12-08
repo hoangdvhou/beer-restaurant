@@ -33,13 +33,13 @@ export default function BeerRestaurantHome() {
     });
 
     if (res?.success) {
+      setRequestId(res?.data?.data?.requestId);
       const step2 = await sendOtp({
         email: values?.email?.trim(),
         phone: values?.phone?.trim(),
         requestId: res?.data?.data?.requestId,
       });
       if (step2?.success) {
-        setRequestId(step2?.data?.data?.requestId);
         setEnterOtp(true);
         setUser(values);
       } else {
