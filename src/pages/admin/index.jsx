@@ -198,6 +198,7 @@ const AdminPage = () => {
           <Button onClick={onFilter}>Lọc</Button>
         </div>
         <Table
+          scroll={{ x: 375 }}
           pagination={{ pageSize: 15 }}
           rowKey={(r) => r?.id}
           columns={columns}
