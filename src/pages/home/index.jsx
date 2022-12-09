@@ -8,6 +8,7 @@ import { submit, sendOtp, confirm } from "@/services/prediction";
 
 export const FC1 = "Croatia";
 export const FC2 = "Brazil";
+const OFF = true;
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
@@ -75,6 +76,37 @@ export default function BeerRestaurantHome() {
   const onOTPFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  if (OFF) {
+    return (
+      <div className="mb-10">
+        <img
+          src={HeroPng}
+          className="mb-4"
+          width={"100%"}
+          height={"auto"}
+          alt="world cup 2022"
+        />
+        <div className=" px-4">
+          <div
+            style={{
+              // backgroundColor: "#0e6137",
+              backgroundColor: "#c2a23f",
+              padding: "16px 32px",
+            }}
+          >
+            <p
+              style={{
+                color: "white",
+              }}
+              className="text-2xl text-center"
+            >{`CHƯƠNG TRÌNH SẼ BẮT ĐẦU VÀO NGÀY 17/12`}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mb-10">
       <img
