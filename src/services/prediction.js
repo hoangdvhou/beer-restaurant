@@ -14,10 +14,10 @@ export async function find(data) {
       success: true,
       data: res?.data,
     };
-  } catch (e) {
+  } catch (err) {
     return {
       success: false,
-      data: e,
+      data: err?.response?.data,
     };
   }
 }
@@ -35,10 +35,10 @@ export async function submit(data) {
       success: true,
       data: res?.data,
     };
-  } catch (e) {
+  } catch (err) {
     return {
       success: false,
-      data: e,
+      data: err?.response?.data,
     };
   }
 }
@@ -54,10 +54,10 @@ export async function sendOtp(data) {
       success: true,
       data: res?.data,
     };
-  } catch (e) {
+  } catch (err) {
     return {
       success: false,
-      data: e,
+      data: err?.response?.data,
     };
   }
 }
@@ -74,10 +74,10 @@ export async function confirm(data) {
       success: true,
       data: res?.data,
     };
-  } catch (e) {
+  } catch (err) {
     return {
       success: false,
-      data: e,
+      data: err?.response?.data,
     };
   }
 }

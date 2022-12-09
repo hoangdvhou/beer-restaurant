@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import HeroPng from "@/assets/hero.png";
+import HeroPng from "@/assets/hero.jpg";
+import BackgroundImg from "@/assets/banner.jpg";
 import Team1Png from "@/assets/croatia.png";
 import Team2Png from "@/assets/brazil.png";
 import { Button, Select, Checkbox, Form, Input } from "antd";
@@ -8,7 +9,7 @@ import { submit, sendOtp, confirm } from "@/services/prediction";
 
 export const FC1 = "Croatia";
 export const FC2 = "Brazil";
-const OFF = true;
+const OFF = false;
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
@@ -33,6 +34,10 @@ export default function BeerRestaurantHome() {
       scoreB: twoScore,
     });
 
+    if (!res?.success) {
+      return alert(res?.data?.msg || "Lỗi, vui lòng thử lại");
+    }
+
     if (res?.success) {
       setRequestId(res?.data?.data?.requestId);
       const step2 = await sendOtp({
@@ -40,14 +45,17 @@ export default function BeerRestaurantHome() {
         phone: values?.phone?.trim(),
         requestId: res?.data?.data?.requestId,
       });
+
+      if (!step2?.success) {
+        return alert(step2?.data?.msg || "Lỗi, vui lòng thử lại");
+      }
+
       if (step2?.success) {
         setEnterOtp(true);
         setUser(values);
-      } else {
-        alert("Lỗi, vui lòng thử lại");
       }
     } else {
-      alert("Lỗi, vui lòng thử lại");
+      return alert("Lỗi, vui lòng thử lại");
     }
   };
 
@@ -66,10 +74,13 @@ export default function BeerRestaurantHome() {
       email: user?.email,
       requestId: requestId,
     });
+
+    if (!res?.success) {
+      return alert(step2?.data?.msg || "Lỗi, vui lòng thử lại");
+    }
+
     if (res?.success) {
       setGuessSuccess(true);
-    } else {
-      alert("Lỗi, vui lòng thử lại");
     }
   };
 
@@ -108,15 +119,14 @@ export default function BeerRestaurantHome() {
   }
 
   return (
-    <div className="mb-10">
-      <img
-        src={HeroPng}
-        className="mb-4"
-        width={"100%"}
-        height={"auto"}
-        alt="world cup 2022"
-      />
-      <div className=" px-4">
+    <div>
+      <img src={HeroPng} width={"100%"} height={"auto"} alt="world cup 2022" />
+      <div
+        style={{
+          backgroundImage: `url(${BackgroundImg})`,
+        }}
+        className="pb-4"
+      >
         <div
           style={{
             // backgroundColor: "#0e6137",
@@ -220,7 +230,7 @@ export default function BeerRestaurantHome() {
               <div className="flex-none">
                 <img
                   src={Team1Png}
-                  className="mt-2"
+                  className="mt-2 ml-2"
                   alt={FC1}
                   width={100}
                   height={"auto"}
@@ -341,7 +351,7 @@ export default function BeerRestaurantHome() {
               <div className="flex-none">
                 <img
                   src={Team2Png}
-                  className="mt-2"
+                  className="mt-2 mr-2"
                   alt={FC2}
                   width={100}
                   height={"auto"}
