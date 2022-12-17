@@ -9,7 +9,7 @@ import { submit, sendOtp, confirm } from "@/services/prediction";
 
 export const FC1 = "Croatia";
 export const FC2 = "Morocco";
-const OFF = false;
+const OFF = true;
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
@@ -111,7 +111,7 @@ export default function BeerRestaurantHome() {
                 color: "white",
               }}
               className="text-2xl text-center"
-            >{`CHƯƠNG TRÌNH SẼ BẮT ĐẦU VÀO NGÀY 17/12`}</p>
+            >{`CHƯƠNG TRÌNH SẼ BẮT ĐẦU VÀO NGÀY 18/12`}</p>
           </div>
         </div>
       </div>
