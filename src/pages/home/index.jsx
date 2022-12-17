@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import HeroPng from "@/assets/hero.jpg";
 import BackgroundImg from "@/assets/banner.jpg";
 import Team1Png from "@/assets/croatia.png";
-import Team2Png from "@/assets/brazil.png";
+import Team2Png from "@/assets/marock.png";
 import { Button, Select, Checkbox, Form, Input } from "antd";
 import { useState } from "react";
 import { submit, sendOtp, confirm } from "@/services/prediction";
 
 export const FC1 = "Croatia";
-export const FC2 = "Brazil";
-const OFF = true;
+export const FC2 = "Morocco";
+const OFF = false;
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
