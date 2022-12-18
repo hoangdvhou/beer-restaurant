@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import HeroPng from "@/assets/hero.jpg";
 import BackgroundImg from "@/assets/banner.jpg";
-import Team1Png from "@/assets/croatia.png";
-import Team2Png from "@/assets/marock.png";
+import Team1Png from "@/assets/arghentina.png";
+import Team2Png from "@/assets/france.png";
 import { Button, Select, Checkbox, Form, Input } from "antd";
 import { useState } from "react";
 import { submit, sendOtp, confirm } from "@/services/prediction";
 
-export const FC1 = "Croatia";
-export const FC2 = "Morocco";
-const OFF = true;
+export const FC1 = "Argentina";
+export const FC2 = "France";
+const OFF = false;
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
@@ -111,7 +111,7 @@ export default function BeerRestaurantHome() {
                 color: "white",
               }}
               className="text-2xl text-center"
-            >{`CHƯƠNG TRÌNH SẼ BẮT ĐẦU VÀO NGÀY 18/12`}</p>
+            >{`CHƯƠNG TRÌNH ĐÃ KẾT THÚC`}</p>
           </div>
         </div>
       </div>

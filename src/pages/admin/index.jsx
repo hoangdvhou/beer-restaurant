@@ -48,7 +48,7 @@ const AdminPage = () => {
   ];
 
   const getData = useCallback(async () => {
-    const res = await find({});
+    const res = await find({ limit: 15, offset: 0 });
     if (res?.success) {
       setResult(res?.data?.data?.elementList);
     } else {
