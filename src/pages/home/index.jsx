@@ -9,7 +9,7 @@ import { submit, sendOtp, confirm } from "@/services/prediction";
 
 export const FC1 = "Argentina";
 export const FC2 = "France";
-const OFF = false;
+const OFF = true;
 
 export default function BeerRestaurantHome() {
   const [enterOtp, setEnterOtp] = useState(false);
